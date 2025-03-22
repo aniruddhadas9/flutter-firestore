@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_firestore/loading.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ).catchError((error) {
+    print(" Firebase.initializeApp|||| the error is $error");
+    return error;
+  });
+
   runApp(const MyApp());
 }
 
@@ -35,7 +41,8 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const LoadingScreen(),
+      // home: const MyHomePage(title: 'KRenter Firestore'),
     );
   }
 }
