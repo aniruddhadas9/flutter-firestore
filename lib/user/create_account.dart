@@ -16,7 +16,8 @@ class CreateAccountWidget extends StatefulWidget {
 
 class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -33,35 +34,43 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
 // Initialize the database
   Future<void> _initDatabase() async {
     final directory = await getApplicationDocumentsDirectory();
-    final path = join(directory.path, 'user_data.db');
+    final path = join(directory.path, 'users.db');
+    // deleteDatabase(path);
+
     _database = await openDatabase(path, version: 1, onCreate: (db, version) {
       return db.execute(
-        "CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, address TEXT, phone TEXT)",
+        "CREATE TABLE user(email TEXT PRIMARY KEY UNIQUE, firstName TEXT, lastName TEXT, address TEXT, phone TEXT)",
       );
     });
+
   }
 
   // Insert data into the SQLite database
-  Future<void> _insertData(String name, String email, String address, String phone) async {
+  Future<void> _insertData(String firstName, String lastName, String email, String address, String phone) async {
+    // deleteUser(email);
     await _database.insert(
       'user',
-      {'name': name, 'email': email, 'address': address, 'phone': phone},
+      {'firstName': firstName, 'lastName': lastName, 'email': email, 'address': address, 'phone': phone},
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-  // Insert data into the SQLite database
-  Future<List<dynamic>> _getUserData() async {
+  Future<void> updateUser(User user) async {
+    await _database.update('user', user.toMap(), where: 'email = ?', whereArgs: [user.email],);
+  }
 
+  Future<void> deleteUser(String email) async {
+    print('reached delete user by email $email');
+    await _database.delete('user', where: 'email = ?', whereArgs: [email],);
+  }
+
+  // Get data into the SQLite database
+  Future<List<dynamic>> _getUserData() async {
     final List<Map<String, dynamic>> users = await _database.query('user');
     return [
-      for (final {'id': id as int, 'name': name as String, 'email': email, 'address': address, 'phone': phone } in users)
-        User(id: id, name: name, email: email, address: address, phone: phone),
+      for (final {'id': id as int, 'firstName': firstName as String, 'lastName': lastName as String, 'email': email, 'address': address, 'phone': phone } in users)
+        User(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone),
     ];
-    for (var dt in users) {
-      print('got the data from local sqlite${dt.toString()}');
-      print('got the data from local sqlite${dt.toString()}');
-    }
   }
 
 
@@ -70,12 +79,15 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
     if (_formKey.currentState?.validate() ?? false) {
 
 
-      final name = _nameController.text.trim();
+      final firstName = _firstNameController.text.trim();
+      final lastName = _lastNameController.text.trim();
       final email = _emailController.text.trim();
       final address = _addressController.text.trim();
       final phone = _phoneController.text.trim();
+
+      // final user = User(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone);
       // Insert the form data into the database
-      _insertData(name, email, address, phone).then((_) {
+      _insertData(firstName, lastName, email, address, phone).then((_) {
         ScaffoldMessenger.of(context as BuildContext).showSnackBar(
           SnackBar(content: Text('Data saved successfully')),
         );
@@ -88,7 +100,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
       print('before printing the user data in the local SQLite database');
       List<dynamic> users = await _getUserData();
       users.forEach((user){
-        print('user tostring {${user.name.toString()} ${user.email.toString()}}');
+        print('user tostring {${user.firstName.toString()}, ${user.lastName.toString()}, ${user.email.toString()}, ${user.address.toString()}, ${user.phone.toString()}}');
       });
 
 
@@ -97,7 +109,8 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
       final url = 'https://your-api-url.com/submit-form';
         // Prepare form data for http call
         final formData = {
-          'name': _nameController.text,
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
           'email': _emailController.text,
           'address': _addressController.text,
           'phone': _phoneController.text,
@@ -189,11 +202,21 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                controller: _firstNameController,
+                decoration: InputDecoration(labelText: 'First Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
+                    return 'Please enter your first name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _lastNameController,
+                decoration: InputDecoration(labelText: 'Last Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your last name';
                   }
                   return null;
                 },
