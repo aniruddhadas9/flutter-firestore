@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_firestore/auth/signup_screen.dart';
+import 'signup_screen.dart';
 import '../home_screen.dart';
 
 import '../widgets/button.dart';

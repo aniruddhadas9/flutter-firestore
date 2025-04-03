@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_firestore/user/create_account.dart';
+import 'user/create_account.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -89,7 +89,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 class DataScreen extends StatelessWidget {
   final List<Map<String, dynamic>> data;
 
-  DataScreen({required this.data});
+  const DataScreen({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +113,8 @@ class DataScreen extends StatelessWidget {
 }
 
 class NoDataScreen extends StatelessWidget {
+  const NoDataScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

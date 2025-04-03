@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firestore/user/user.dart';
-import 'package:flutter_firestore/user/user_firestore.dart';
-import 'package:flutter_firestore/user/user_setup_login.dart';
+import 'user.dart';
+import 'user_firestore.dart';
+import 'user_setup_login.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'dart:convert';
@@ -128,9 +128,9 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
 
       print('before printing the user data in the local SQLite database');
       List<dynamic> users = await _getUserData();
-      users.forEach((user){
+      for (var user in users) {
         print('create_account|_getUserData|User: {${user.firstName.toString()}, ${user.lastName.toString()}, ${user.email.toString()}, ${user.address.toString()}, ${user.phone.toString()}}');
-      });
+      }
 
 
 
@@ -190,7 +190,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
 
   // Function to show error dialog
   void _showErrorDialog(String message) {
-    print("error${message}");
+    print("error$message");
     /*showDialog(
       context: context,
       builder: (context) {

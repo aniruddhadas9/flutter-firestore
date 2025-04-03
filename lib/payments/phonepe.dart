@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_firestore/payments/upi_app.dart';
+import 'upi_app.dart';
 import 'package:phonepe_payment_sdk/phonepe_payment_sdk.dart';
 
 class PhonePe extends StatefulWidget {

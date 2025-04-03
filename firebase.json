@@ -3,14 +3,14 @@
     "platforms": {
       "android": {
         "default": {
-          "projectId": "krenter",
+          "projectId": "krenter-3989e",
           "appId": "1:400863639679:android:f40a833cc9ccc363aca74a",
           "fileOutput": "android/app/google-services.json"
         }
       },
       "ios": {
         "default": {
-          "projectId": "krenter",
+          "projectId": "krenter-3989e",
           "appId": "1:400863639679:ios:ced1eee9dd91b916aca74a",
           "uploadDebugSymbols": false,
           "fileOutput": "ios/Runner/GoogleService-Info.plist"
@@ -18,7 +18,7 @@
       },
       "macos": {
         "default": {
-          "projectId": "krenter",
+          "projectId": "krenter-3989e",
           "appId": "1:400863639679:ios:ced1eee9dd91b916aca74a",
           "uploadDebugSymbols": false,
           "fileOutput": "macos/Runner/GoogleService-Info.plist"
@@ -26,7 +26,7 @@
       },
       "dart": {
         "lib/firebase_options.dart": {
-          "projectId": "krenter",
+          "projectId": "krenter-3989e",
           "configurations": {
             "android": "1:400863639679:android:f40a833cc9ccc363aca74a",
             "ios": "1:400863639679:ios:ced1eee9dd91b916aca74a",
