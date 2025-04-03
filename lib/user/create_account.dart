@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore/user/user.dart';
+import 'package:flutter_firestore/user/user_firestore.dart';
+import 'package:flutter_firestore/user/user_setup_login.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'dart:convert';
@@ -68,7 +70,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   Future<List<dynamic>> _getUserData() async {
     final List<Map<String, dynamic>> users = await _database.query('user');
     return [
-      for (final {'id': id as int, 'firstName': firstName as String, 'lastName': lastName as String, 'email': email, 'address': address, 'phone': phone } in users)
+      for (final {'firstName': firstName as String, 'lastName': lastName as String, 'email': email, 'address': address, 'phone': phone } in users)
         User(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone),
     ];
   }
@@ -85,9 +87,36 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
       final address = _addressController.text.trim();
       final phone = _phoneController.text.trim();
 
-      // final user = User(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone);
+      final user = User(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone);
+
+      // Sign in the user by email and passwrod, for now the password is dummy now
+      UserSetupLogin().createAccountWithEmailAndPassword(email, 'password');
+
+      // Try to get the user from fire store
+      UserService().getUser(email).then((_) {
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          SnackBar(content: Text('Firestore:::get user by email success')),
+        );
+      }).catchError((error) {
+        print('Firestore:::Error while getting user by email: $error');
+        /*ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          SnackBar(content: Text('Firestore:::Error while getting user by email: $error')),
+        );*/
+      });
+
+      // insert data to firestore
+      UserService().addUser(user).then((_) {
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          SnackBar(content: Text('Firestore:::Data saved successfully')),
+        );
+      }).catchError((error) {
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          SnackBar(content: Text('Firestore:::Error: $error')),
+        );
+      });
+
       // Insert the form data into the database
-      _insertData(firstName, lastName, email, address, phone).then((_) {
+      /*_insertData(firstName, lastName, email, address, phone).then((_) {
         ScaffoldMessenger.of(context as BuildContext).showSnackBar(
           SnackBar(content: Text('Data saved successfully')),
         );
@@ -95,12 +124,12 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
         ScaffoldMessenger.of(context as BuildContext).showSnackBar(
           SnackBar(content: Text('Error: $error')),
         );
-      });
+      });*/
 
       print('before printing the user data in the local SQLite database');
       List<dynamic> users = await _getUserData();
       users.forEach((user){
-        print('user tostring {${user.firstName.toString()}, ${user.lastName.toString()}, ${user.email.toString()}, ${user.address.toString()}, ${user.phone.toString()}}');
+        print('create_account|_getUserData|User: {${user.firstName.toString()}, ${user.lastName.toString()}, ${user.email.toString()}, ${user.address.toString()}, ${user.phone.toString()}}');
       });
 
 
@@ -140,8 +169,8 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   // Function to show success dialog
   void _showSuccessDialog() {
     print("success");
-    /*showDialog(
-      context: context,
+    showDialog(
+      context: context as BuildContext,
       builder: (context) {
         return AlertDialog(
           title: Text('Success'),
@@ -156,7 +185,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
           ],
         );
       },
-    );*/
+    );
   }
 
   // Function to show error dialog

@@ -11,6 +11,15 @@ class User {
     return {'firstName': firstName, 'lastName': lastName, 'email': email, 'address': address, 'phone': phone};
   }
 
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      firstName: map['firstName'],
+      lastName: map['lastName'],
+      email: map['email'],
+      address: map['address'],
+      phone: map['phone'],
+    );
+  }
 
   @override
   String toString() {

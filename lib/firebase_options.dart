@@ -42,48 +42,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAJVL0hZ9PBFNPlNklqnkyAG-92N9Tq3Tc',
-    appId: '1:684026150374:web:46b03fd4689b11f6d66a27',
-    messagingSenderId: '684026150374',
-    projectId: 'krenter-3989e',
-    authDomain: 'krenter-3989e.firebaseapp.com',
-    storageBucket: 'krenter-3989e.firebasestorage.app',
-    measurementId: 'G-DFFT49E8DL',
+    apiKey: 'AIzaSyD4yxXEX4dnK7aqWnZJrgLWinejv3eOFFE',
+    appId: '1:400863639679:web:4c0ddd0dd74bf696aca74a',
+    messagingSenderId: '400863639679',
+    projectId: 'krenter',
+    authDomain: 'krenter.firebaseapp.com',
+    storageBucket: 'krenter.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBBKKXSLHELprICTm742cJ_UrUgS4REGgU',
-    appId: '1:684026150374:android:fe8ee44076637800d66a27',
-    messagingSenderId: '684026150374',
-    projectId: 'krenter-3989e',
-    storageBucket: 'krenter-3989e.firebasestorage.app',
+    apiKey: 'AIzaSyAN-z1ul1ksxqjK-UZVNdNk4hjeV519zIk',
+    appId: '1:400863639679:android:f40a833cc9ccc363aca74a',
+    messagingSenderId: '400863639679',
+    projectId: 'krenter',
+    storageBucket: 'krenter.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAHn_dFsv9f72qjKjUAn1re8Y7yOFNFRJE',
-    appId: '1:684026150374:ios:6d980399dcc16d6ad66a27',
-    messagingSenderId: '684026150374',
-    projectId: 'krenter-3989e',
-    storageBucket: 'krenter-3989e.firebasestorage.app',
+    apiKey: 'AIzaSyD_UOopOdnPwTtmOecUcVj9uauzHG8RaMw',
+    appId: '1:400863639679:ios:ced1eee9dd91b916aca74a',
+    messagingSenderId: '400863639679',
+    projectId: 'krenter',
+    storageBucket: 'krenter.firebasestorage.app',
     iosBundleId: 'com.example.flutterFirestore',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAHn_dFsv9f72qjKjUAn1re8Y7yOFNFRJE',
-    appId: '1:684026150374:ios:6d980399dcc16d6ad66a27',
-    messagingSenderId: '684026150374',
-    projectId: 'krenter-3989e',
-    storageBucket: 'krenter-3989e.firebasestorage.app',
+    apiKey: 'AIzaSyD_UOopOdnPwTtmOecUcVj9uauzHG8RaMw',
+    appId: '1:400863639679:ios:ced1eee9dd91b916aca74a',
+    messagingSenderId: '400863639679',
+    projectId: 'krenter',
+    storageBucket: 'krenter.firebasestorage.app',
     iosBundleId: 'com.example.flutterFirestore',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAJVL0hZ9PBFNPlNklqnkyAG-92N9Tq3Tc',
-    appId: '1:684026150374:web:57757737f9051674d66a27',
-    messagingSenderId: '684026150374',
-    projectId: 'krenter-3989e',
-    authDomain: 'krenter-3989e.firebaseapp.com',
-    storageBucket: 'krenter-3989e.firebasestorage.app',
-    measurementId: 'G-BLS972GVHJ',
+    apiKey: 'AIzaSyD4yxXEX4dnK7aqWnZJrgLWinejv3eOFFE',
+    appId: '1:400863639679:web:710dc943dad5379faca74a',
+    messagingSenderId: '400863639679',
+    projectId: 'krenter',
+    authDomain: 'krenter.firebaseapp.com',
+    storageBucket: 'krenter.firebasestorage.app',
   );
+
 }

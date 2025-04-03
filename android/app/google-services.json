@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "684026150374",
-    "project_id": "krenter-3989e",
-    "storage_bucket": "krenter-3989e.firebasestorage.app"
+    "project_number": "400863639679",
+    "project_id": "krenter",
+    "storage_bucket": "krenter.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:684026150374:android:fe8ee44076637800d66a27",
+        "mobilesdk_app_id": "1:400863639679:android:f40a833cc9ccc363aca74a",
         "android_client_info": {
           "package_name": "com.example.flutter_firestore"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBBKKXSLHELprICTm742cJ_UrUgS4REGgU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:684026150374:android:3bc9ebaac84ab97fd66a27",
-        "android_client_info": {
-          "package_name": "com.irenter.irenter"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBBKKXSLHELprICTm742cJ_UrUgS4REGgU"
+          "current_key": "AIzaSyAN-z1ul1ksxqjK-UZVNdNk4hjeV519zIk"
         }
       ],
       "services": {
