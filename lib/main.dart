@@ -1,32 +1,35 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_firestore/auth/login_screen.dart';
 import 'package:flutter_firestore/loading.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  /*await Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).catchError((error) {
-    print(" Firebase.initializeApp|||| the error is $error");
-    return error;
-  });*/
-
-  await Firebase.initializeApp(
-    demoProjectId: "demo-krenter-project-id",
-  ).catchError((error) {
-    print(" Firebase.initializeApp|||| the error is $error");
+    log(" Firebase.initializeApp|||| the error is $error");
     return error;
   });
+
+  /*await Firebase.initializeApp(
+    demoProjectId: "demo-krenter-project-id",
+  ).catchError((error) {
+    log(" Firebase.initializeApp|||| the error is $error");
+    return error;
+  });*/
 
   FirebaseAuth.instance
       .authStateChanges()
       .listen((User? user) {
     if (user == null) {
-      print('User is currently signed out!');
+      log('User is currently signed out!');
     } else {
-      print('User is signed in!');
+      log('User is signed in!');
     }
   });
 
@@ -34,9 +37,9 @@ Future<void> main() async {
       .idTokenChanges()
       .listen((User? user) {
     if (user == null) {
-      print('User is currently signed out!');
+      log('User is currently signed out!');
     } else {
-      print('User is signed in!');
+      log('User is signed in!');
     }
   });
 
@@ -44,9 +47,9 @@ Future<void> main() async {
       .userChanges()
       .listen((User? user) {
     if (user == null) {
-      print('User is currently signed out!');
+      log('User is currently signed out!');
     } else {
-      print('User is signed in!');
+      log('User is signed in!');
     }
   });
 
@@ -79,7 +82,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoadingScreen(),
+      home: const LoginScreen(),
       // home: const MyHomePage(title: 'KRenter Firestore'),
     );
   }
