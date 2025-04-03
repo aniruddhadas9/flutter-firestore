@@ -45,25 +45,25 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyD4yxXEX4dnK7aqWnZJrgLWinejv3eOFFE',
     appId: '1:400863639679:web:4c0ddd0dd74bf696aca74a',
     messagingSenderId: '400863639679',
-    projectId: 'krenter',
-    authDomain: 'krenter.firebaseapp.com',
-    storageBucket: 'krenter.firebasestorage.app',
+    projectId: 'krenter-3989e',
+    authDomain: 'krenter-3989e.firebaseapp.com',
+    storageBucket: 'krenter-3989e.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAN-z1ul1ksxqjK-UZVNdNk4hjeV519zIk',
     appId: '1:400863639679:android:f40a833cc9ccc363aca74a',
     messagingSenderId: '400863639679',
-    projectId: 'krenter',
-    storageBucket: 'krenter.firebasestorage.app',
+    projectId: 'krenter-3989e',
+    storageBucket: 'krenter-3989e.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyD_UOopOdnPwTtmOecUcVj9uauzHG8RaMw',
     appId: '1:400863639679:ios:ced1eee9dd91b916aca74a',
     messagingSenderId: '400863639679',
-    projectId: 'krenter',
-    storageBucket: 'krenter.firebasestorage.app',
+    projectId: 'krenter-3989e',
+    storageBucket: 'krenter-3989e.firebasestorage.app',
     iosBundleId: 'com.example.flutterFirestore',
   );
 
@@ -71,8 +71,8 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyD_UOopOdnPwTtmOecUcVj9uauzHG8RaMw',
     appId: '1:400863639679:ios:ced1eee9dd91b916aca74a',
     messagingSenderId: '400863639679',
-    projectId: 'krenter',
-    storageBucket: 'krenter.firebasestorage.app',
+    projectId: 'krenter-3989e',
+    storageBucket: 'krenter-3989e.firebasestorage.app',
     iosBundleId: 'com.example.flutterFirestore',
   );
 
@@ -80,9 +80,9 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyD4yxXEX4dnK7aqWnZJrgLWinejv3eOFFE',
     appId: '1:400863639679:web:710dc943dad5379faca74a',
     messagingSenderId: '400863639679',
-    projectId: 'krenter',
-    authDomain: 'krenter.firebaseapp.com',
-    storageBucket: 'krenter.firebasestorage.app',
+    projectId: 'krenter-3989e',
+    authDomain: 'krenter-3989e.firebaseapp.com',
+    storageBucket: 'krenter-3989e.firebasestorage.app',
   );
 
 }
