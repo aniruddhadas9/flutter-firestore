@@ -48,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomTextField(
               hint: "Enter Password",
               label: "Password",
+              isPassword: true,
               controller: _password,
             ),
             const SizedBox(height: 30),
@@ -76,10 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => const SignupScreen()),
       );
 
-  goToHome(BuildContext context) => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+  goToHome(BuildContext context) => HomeScreen();
 
   _login() async {
     final user =
