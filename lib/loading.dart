@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore/user/create_account.dart';
 import 'package:path/path.dart';
@@ -36,13 +38,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   // Check data from the database and navigate based on the result
   Future<void> _checkDataFromDatabase() async {
-    print('reached _checkDataFromDatabase');
+    log('reached _checkDataFromDatabase');
     // Simulating a delay for loading data
     await Future.delayed(Duration(seconds: 2));
 
     final List<Map<String, dynamic>> data = await _database.query('user_data');
     for (var dt in data) {
-      print('got the data from local sqlite${dt.toString()}');
+      log('got the data from local sqlite${dt.toString()}');
     }
 
 
@@ -51,7 +53,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     });
 
     if (data.isNotEmpty) {
-      print('reached data is empty');
+      log('reached data is empty');
       // If data exists, navigate to the DataScreen
       Navigator.pushReplacement(
         context as BuildContext,
@@ -59,7 +61,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       );
 
     } else {
-      print('reached data available');
+      log('reached data available');
       // If no data exists, navigate to the NoDataScreen
       Navigator.pushReplacement(
         context as BuildContext,
