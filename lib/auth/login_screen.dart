@@ -17,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = AuthService();
-
   final _email = TextEditingController();
   final _password = TextEditingController();
 
@@ -28,6 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
     _password.dispose();
   }
 
+  /*@override
+  Future<void> initState() async {
+    if (await AuthService().checkCurrentUserLoginStatus()) {
+      Navigator.pushNamed(context, routeName);
+    }
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,20 +78,22 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  goToSignup(BuildContext context) => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const SignupScreen()),
-      );
-
-  goToHome(BuildContext context) => HomeScreen();
-
-  _login() async {
-    final user =
-        await _auth.loginUserWithEmailAndPassword(_email.text, _password.text);
-
-    if (user != null) {
-      log("User Logged In");
-      goToHome(context);
-    }
+  goToSignup(BuildContext context) {
+    Navigator.pushNamed(context, 'main');
   }
+
+    goToHome(BuildContext context) async {
+      Navigator.pushNamed(context, 'main');
+    }
+
+    _login() async {
+      final user =
+      await _auth.loginUserWithEmailAndPassword(_email.text, _password.text);
+
+      if (user != null) {
+        log("User Logged In");
+        goToHome(context);
+      }
+    }
+
 }

@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore/widgets/button.dart';
 
 import 'auth/auth_service.dart';
 import 'auth/login_screen.dart';
-
 
 
 class HomeScreen extends StatefulWidget {
@@ -13,9 +14,9 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreen();
 }
 
-
-
 class _HomeScreen extends State<HomeScreen> {
+
+  final authService = AuthService();
 
   int _selectedIndex = 0;
   int currentPageIndex = 0;
@@ -27,8 +28,21 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    final auth = AuthService();
+
+
+    if (authService.isUserLoggedIn == false) {
+      log('home_screen|widget|isuserlogn|false|redirectingto loginpage');
+      log('current user details${authService.getCurrentUserDetails()}');
+
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -48,7 +62,7 @@ class _HomeScreen extends State<HomeScreen> {
             CustomButton(
               label: "Sign Out",
               onPressed: () async {
-                await auth.signout();
+                await authService.signout();
                 goToLogin(context);
               },
             )
@@ -74,7 +88,7 @@ class _HomeScreen extends State<HomeScreen> {
                 // Update the state of the app
                 _onItemTapped(0);
                 // Then close the drawer
-                Navigator.pop(context);
+                // Navigator.pop(context);
               },
             ),
             ListTile(
@@ -84,7 +98,7 @@ class _HomeScreen extends State<HomeScreen> {
                 // Update the state of the app
                 _onItemTapped(1);
                 // Then close the drawer
-                Navigator.pop(context);
+                // Navigator.pop(context);
                 Navigator.pushNamed(context, '/paymentDetail');
               },
             ),
@@ -95,14 +109,14 @@ class _HomeScreen extends State<HomeScreen> {
                 // Update the state of the app
                 _onItemTapped(2);
                 // Then close the drawer
-                Navigator.pop(context);
+                // Navigator.pop(context);
                 Navigator.pushNamed(context, '/flatDetail');
               },
             ),
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
+      /*bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           print(index);
           setState(() {
@@ -139,7 +153,7 @@ class _HomeScreen extends State<HomeScreen> {
           ),
         ],
       ),
-
+*/
       // Floating button
       floatingActionButton: FloatingActionButton(
         onPressed: goToLogin(context),
@@ -149,8 +163,8 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
-  goToLogin(BuildContext context) => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
-      );
+  goToLogin(BuildContext context){
+    log('go to login page clicked');
+    // Navigator.pushNamed(context, 'login');
+  }
 }

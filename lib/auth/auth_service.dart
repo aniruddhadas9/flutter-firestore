@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final _auth = FirebaseAuth.instance;
-
+  bool isUserLoggedIn = false;
+  User? _user;
   Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -29,9 +30,26 @@ class AuthService {
     return null;
   }
 
+  Future<bool> checkCurrentUserLoginStatus() async {
+    _user = _auth.currentUser;
+    if (_user != null) {
+      // User is not logged in, redirect to login
+      isUserLoggedIn = true;
+      return true;
+    } else {
+      isUserLoggedIn = false;
+    }
+    return false;
+  }
+
+  String getCurrentUserDetails() {
+    return _auth.currentUser.toString();
+  }
+
   Future<void> signout() async {
     try {
       await _auth.signOut();
+      isUserLoggedIn = false;
     } catch (e) {
       log("AuthService|signout|Something went wrong $e");
     }
