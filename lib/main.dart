@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firestore/auth/login_screen.dart';
 import 'package:flutter_firestore/auth/signup_screen.dart';
+import 'package:flutter_firestore/flat-detail/FlatRentStart.dart';
 import 'package:flutter_firestore/home_screen.dart';
 import 'package:flutter_firestore/loading.dart';
 import 'package:flutter_firestore/payments/payment-details.dart';
@@ -53,8 +54,6 @@ Future<void> main() async {
     }
   });
 
-
-
   runApp(const MyApp());
 }
 
@@ -69,7 +68,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
+      home: FlatRentStart(),
+      // home: HomeScreen(),
       // home: const MyHomePage(title: 'KRenter Firestore'),
       routes: {
         '/main': (context) => MyApp(),

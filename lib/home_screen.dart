@@ -1,10 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_firestore/widgets/button.dart';
-
 import 'auth/auth_service.dart';
-import 'auth/login_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -41,6 +38,8 @@ class _HomeScreen extends State<HomeScreen> {
       log('home_screen|widget|isuserlogn|false|redirectingto loginpage');
       log('current user details${authService.getCurrentUserDetails()}');
 
+    } else {
+      log('home_screen|widget|user already login :: need to stay here');
     }
 
     return Scaffold(
@@ -55,7 +54,7 @@ class _HomeScreen extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Welcome User",
+              "KRenter",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
             ),
             const SizedBox(height: 20),
