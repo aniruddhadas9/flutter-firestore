@@ -2,12 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class FlatRentStart extends StatefulWidget {
+  const FlatRentStart({super.key});
+
   @override
   _FlatRentStartState createState() => _FlatRentStartState();
 }
@@ -195,8 +196,8 @@ class _FlatRentStartState extends State<FlatRentStart> {
                 validator: (val) => val == null ? 'Select flat' : null,
               ),
               ElevatedButton(
-                child: Text(idProof == null ? 'Upload ID Proof' : 'ID Proof Selected'),
                 onPressed: _pickFile,
+                child: Text(idProof == null ? 'Upload ID Proof' : 'ID Proof Selected'),
               ),
               Row(
                 children: [

@@ -16,7 +16,7 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   final authService = AuthService();
   String appStatus = 'loading';
-  bool _isLoading = true;
+  final bool _isLoading = true;
   late BuildContext buildContext;
 
   @override

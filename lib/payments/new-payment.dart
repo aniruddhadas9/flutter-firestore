@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server.dart';
 
 import '../services/cloud-firestore.dart';
-import '../services/email.dart';
 
 // Define a custom Form widget.
 class MyCustomForm extends StatefulWidget {

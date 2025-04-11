@@ -9,7 +9,6 @@ import 'package:flutter_firestore/flat-detail/FlatRentStart.dart';
 import 'package:flutter_firestore/home_screen.dart';
 import 'package:flutter_firestore/loading.dart';
 import 'package:flutter_firestore/payments/payment-details.dart';
-import 'auth/auth_service.dart';
 import 'firebase_options.dart';
 import 'flat-detail/flat-detail.dart';
 

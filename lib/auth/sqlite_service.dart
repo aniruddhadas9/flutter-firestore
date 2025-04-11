@@ -1,13 +1,12 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqliteService {
   late Database _database;
-  bool _isLoading = true;
+  final bool _isLoading = true;
 
   // Initialize the database
   Future<void> _initDatabase() async {
