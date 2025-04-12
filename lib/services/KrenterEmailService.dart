@@ -2,7 +2,7 @@
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 
-class Email {
+class KrenterEmailService {
   Future<void> sendEmail(String username, String password, String fromEmail,
       String fromName, String toEmail, String subject, String body) async {
     final smtpServer = gmail(username, password);
