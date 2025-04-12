@@ -67,18 +67,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: FlatRentStart(),
+      home: LoadingScreen(),
+      // home: FlatRentStart(),
       // home: HomeScreen(),
       // home: const MyHomePage(title: 'KRenter Firestore'),
       routes: {
         '/main': (context) => MyApp(),
         '/login': (context) => LoginScreen(),
-        '/signup': (context) => SignupScreen(),
+        '/signUp': (context) => SignupScreen(),
         // Define route for new page
         '/homePage': (context) => HomeScreen(),
         '/loading': (context) => LoadingScreen(),
         // Define route for new page
         '/flatDetail': (context) => FlatDetail(),
+        '/FlatRentStart': (context) => FlatRentStart(),
         // Define route for new page
         // '/newPayment': (context) => NewPayment(), // Define route for new page
         '/paymentDetail': (context) => PaymentDetail(),

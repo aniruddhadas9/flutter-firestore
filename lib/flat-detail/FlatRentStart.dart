@@ -6,6 +6,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
+import '../auth/auth_service.dart';
+
 class FlatRentStart extends StatefulWidget {
   const FlatRentStart({super.key});
 
@@ -14,6 +16,7 @@ class FlatRentStart extends StatefulWidget {
 }
 
 class _FlatRentStartState extends State<FlatRentStart> {
+  final _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String? name, email, phone, flat, terms, monthlyRent, idProofProvided;
   DateTime? startDate, endDate;
@@ -74,22 +77,31 @@ class _FlatRentStartState extends State<FlatRentStart> {
           'phone': phone,
           'flat': flat,
           'monthly_rent': monthlyRent,
-          'start_date': startDate?.toIso8601String(),
-          'end_date': endDate?.toIso8601String(),
-          'id_proof_provided': idProofProvided,
-          'id_proof_url': 'fileUrl',
-          'agreed': terms == 'Agree',
+          'startDate': startDate?.toIso8601String(),
+          'endDate': endDate?.toIso8601String(),
+          'idProofProvided': idProofProvided,
+          'idProofUrl': 'fileUrl',
+          'agreed': 'Agree',
         };
         log('submitted data ${data.toString()}');
 
-        await FirebaseFirestore.instance.collection('tenantOnboarding').add(data);
+        // Get current user Uid
 
-        await _sendEmail();
+
+        if(_auth.getCurrentUser() != null) {
+          log('the user is already login | ${_auth.getCurrentUserToString()}');
+          final String? userEmail = _auth.getCurrentUser()?.email;
+          await FirebaseFirestore.instance.collection('tenantOnboarding').add(data);
+        }
+
+
+        // await _sendEmail();
         await _showNotification();
 
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Data saved and email sent.')));
-      } catch (e) {
+      } catch (e, r) {
         log('renterRegistration|Error: $e');
+        log('renterRegistration|Error||r: $r');
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
       } finally {
         setState(() => isLoading = false);
@@ -110,6 +122,7 @@ class _FlatRentStartState extends State<FlatRentStart> {
   }
 
   Future<void> _showNotification() async {
+    log('sending push notification');
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidNotificationDetails('channelId', 'channelName', importance: Importance.max);
     const platform = NotificationDetails(android: android);
@@ -120,6 +133,7 @@ class _FlatRentStartState extends State<FlatRentStart> {
       'Your Rent request submitted successfully',
       platform,
     );
+    log('push notification sent !!!!');
   }
 
   @override

@@ -6,6 +6,7 @@ class AuthService {
   final _auth = FirebaseAuth.instance;
   bool isUserLoggedIn = false;
   User? _user;
+
   Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -42,11 +43,15 @@ class AuthService {
     return false;
   }
 
-  String getCurrentUserDetails() {
+  String getCurrentUserToString() {
     return _auth.currentUser.toString();
   }
 
-  Future<void> signout() async {
+  User? getCurrentUser() {
+    return _auth.currentUser;
+  }
+
+  Future<void> signOut() async {
     try {
       await _auth.signOut();
       isUserLoggedIn = false;

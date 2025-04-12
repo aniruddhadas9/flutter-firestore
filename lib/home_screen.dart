@@ -36,7 +36,7 @@ class _HomeScreen extends State<HomeScreen> {
 
     if (authService.isUserLoggedIn == false) {
       log('home_screen|widget|isuserlogn|false|redirectingto loginpage');
-      log('current user details${authService.getCurrentUserDetails()}');
+      log('current user details${authService.getCurrentUserToString()}');
 
     } else {
       log('home_screen|widget|user already login :: need to stay here');
@@ -61,7 +61,7 @@ class _HomeScreen extends State<HomeScreen> {
             CustomButton(
               label: "Sign Out",
               onPressed: () async {
-                await authService.signout();
+                await authService.signOut();
                 goToLogin(context);
               },
             )

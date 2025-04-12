@@ -23,7 +23,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     if (authService.isUserLoggedIn) {
-      String user = authService.getCurrentUserDetails();
+      String user = authService.getCurrentUserToString();
       log('currentUser: $user');
       appStatus = 'loggedIn';
     } else {
@@ -34,7 +34,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Loading and Navigation Example')),
+        appBar: AppBar(title: Text('Krenter login')),
         body: Center(
             child: Builder(
                 builder: (context) {

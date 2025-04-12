@@ -77,11 +77,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   goToSignup(BuildContext context) {
-    Navigator.pushNamed(context, 'main');
+    Navigator.pushNamed(context, '/signUp');
   }
 
     goToHome(BuildContext context) async {
-      Navigator.pushNamed(context, 'main');
+      Navigator.pushNamed(context, '/FlatRentStart');
     }
 
     _login() async {
